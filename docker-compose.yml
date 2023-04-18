@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: myproject
+
+  server:
+    build: ./server/api
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./server/api:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  client:
+    build: ./client/my-app
+    command: npm run dev
+    volumes:
+      - ./client/my-app:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server

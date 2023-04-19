@@ -19,3 +19,5 @@ EXECUTE OS CONTAINERS
 
 docker-compose up -d
 
+Aguarde o client, db e servidor subirem no docker e acesse localhost:300 para o frontend e localhost:8000 para o backend
+

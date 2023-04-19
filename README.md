@@ -3,19 +3,19 @@ Este é um projeto para o processo seletivo Oper, o aplicativo é feito com o ne
 
 Para executar este projeto, é necessário utilizar o Docker. Siga os seguintes passos:
 
-Clone o repositório
+CLONE O REPOSITÓRIO
 
 git clone https://github.com/LucasRamosLobo/Desafio-Oper.git
 
-Acesse a pasta do cliente
+ACESSE A PASTA DO CLIENTE
 
 cd Desafio-Oper/client/my-app
 
-Instale as dependências
+INSTALE AS DEPENDÊNCIAS
 
 npm install
 
-Execute os containers
+EXECUTE OS CONTAINERS
 
 docker-compose up -d
 

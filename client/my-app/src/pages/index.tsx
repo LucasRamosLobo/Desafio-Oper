@@ -1,6 +1,7 @@
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import styles from '../styles/Home.module.css';
+import Header from '../components/Header';
 
 interface Article {
   id: number;
@@ -28,7 +29,11 @@ const Home = ({ articles }: HomeProps) => {
   };
 
   return (
+    <>
+      <Header />
+
     <div className={styles.container}>
+      
       <h1  className={styles.h1}>Mini Blog <span>Processo Seletivo Oper</span></h1>
       <ul  className={styles.ul}>
         {articles.slice(0, 10).map((article, index) => (
@@ -48,6 +53,7 @@ const Home = ({ articles }: HomeProps) => {
         ))}
       </ul>
     </div>
+    </>
   );
 };
 

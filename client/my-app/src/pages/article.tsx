@@ -1,5 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface ArticleProps {
   id: number;
@@ -11,19 +11,47 @@ interface ArticleProps {
 const Article: NextPage<ArticleProps> = ({ id, title, content, comments }) => {
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState("");
+  const [localComments, setLocalComments] = useState(comments);
+  const [selectedCommentId, setSelectedCommentId] = useState<number | null>(
+    null
+  );
+
+  useEffect(() => {
+    if (selectedCommentId !== null) {
+      fetch(`http://localhost:8000/api/posts/${selectedCommentId}/`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+  }, [selectedCommentId]);
+
+  const handleLikeClick = async (id: number) => {
+    setSelectedCommentId(id);
+  };
+  
+  
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const newComment = {
+      id: localComments.length + 1,
+      id_notice: id.toString(),
+      email: email,
+      content: comment,
+    };
+
+    // Adiciona o novo comentário à lista de comentários localmente
+    setLocalComments([...localComments, newComment]);
 
     const response = await fetch("http://localhost:8000/api/posts/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        id_notice: id.toString(),
-        email: email,
-        content: comment,
-      }),
+      body: JSON.stringify(newComment),
     });
 
     if (response.ok) {
@@ -32,7 +60,7 @@ const Article: NextPage<ArticleProps> = ({ id, title, content, comments }) => {
     }
   };
 
-  const filteredComments = comments.filter(
+  const filteredComments = localComments.filter(
     (comment) => comment.id_notice === id.toString()
   );
 
@@ -40,6 +68,8 @@ const Article: NextPage<ArticleProps> = ({ id, title, content, comments }) => {
     <div key={comment.id}>
       <p>{comment.email}</p>
       <p>{comment.content}</p>
+      <button onClick={() => handleLikeClick(comment.id)}>{comment.id}Curtidas</button>
+      <button>Responder comentário</button>
     </div>
   ));
 

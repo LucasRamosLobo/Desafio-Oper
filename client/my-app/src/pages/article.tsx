@@ -5,7 +5,9 @@ interface ArticleProps {
   id: number;
   title: string;
   content: string;
-  comments: { id: number; id_notice: string; email: string; content: string }[];
+  comments: {
+    likes: number; id: number; id_notice: string; email: string; content: string 
+}[];
 }
 
 const Article: NextPage<ArticleProps> = ({ id, title, content, comments }) => {
@@ -41,6 +43,7 @@ const Article: NextPage<ArticleProps> = ({ id, title, content, comments }) => {
       id_notice: id.toString(),
       email: email,
       content: comment,
+      likes: 0
     };
 
     // Adiciona o novo comentário à lista de comentários localmente
@@ -68,7 +71,7 @@ const Article: NextPage<ArticleProps> = ({ id, title, content, comments }) => {
     <div key={comment.id}>
       <p>{comment.email}</p>
       <p>{comment.content}</p>
-      <button onClick={() => handleLikeClick(comment.id)}>{comment.id}Curtidas</button>
+      <button onClick={() => handleLikeClick(comment.id)}>{comment.likes}Curtidas</button>
       <button>Responder comentário</button>
     </div>
   ));

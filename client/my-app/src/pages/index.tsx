@@ -41,12 +41,13 @@ const Home = ({ articles }: HomeProps) => {
         {articles.slice(0, 12).map((article, index) => (
           <a key={index} className={styles.hover_effect} onClick={() => handleReadMoreClick(article.id)}>
           <li  className={styles.li} key={index}>
-            <Image  className={styles.img}
-              src={article.coverImage}
+            <Image
+              className={styles.img}
+              src={article.coverImage ?? ""}
               alt={article.title}
               width={1280}
               height={720}
-            />
+              />
             <h2  className={styles.h2}>{article.title}</h2>
             <p  className={styles.p}>{article.author}</p>
           </li>

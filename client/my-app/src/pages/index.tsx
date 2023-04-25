@@ -34,24 +34,26 @@ const Home = ({ articles }: HomeProps) => {
 
     <div className={styles.container}>
       
-      <h1  className={styles.h1}>Mini Blog <span>Processo Seletivo Oper</span></h1>
+      <h1  className={styles.h1}>Artigos</h1>
       <ul  className={styles.ul}>
-        {articles.slice(0, 10).map((article, index) => (
+      <div className={styles.container2}>
+        {articles.slice(0, 12).map((article, index) => (
+          <a className={styles.hover_effect} onClick={() => handleReadMoreClick(article.id)}>
           <li  className={styles.li} key={index}>
-            <h2  className={styles.h2}>{article.title}</h2>
-            <p  className={styles.p}>{article.author}</p>
             <img  className={styles.img}
               src={article.coverImage}
               alt={article.title}
               width={1280}
               height={720}
             />
-            <button  className={styles.button} onClick={() => handleReadMoreClick(article.id)}>
-              Read more
-            </button>
+            <h2  className={styles.h2}>{article.title}</h2>
+            <p  className={styles.p}>{article.author}</p>
           </li>
+          </a>
         ))}
+        </div>
       </ul>
+      
     </div>
     </>
   );

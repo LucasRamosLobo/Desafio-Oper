@@ -43,7 +43,7 @@ const Article: NextPage<ArticleProps> = ({ id, title, content, comments, respons
       }
     };
     fetchComment();
-  }, [selectedCommentId]);
+  });
 
   const handleLikeClick = async (id: number) => {
     const updatedComments = localComments.map(comment => {

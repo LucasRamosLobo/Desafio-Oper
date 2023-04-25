@@ -1,7 +1,28 @@
 .container {
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 80%;
     padding: 0 1rem;
+    background-color: white;
+  }
+  .hover_effect {
+    background-color: #ffffff; /* cor de fundo padrão */
+    cursor: pointer; /* cursor padrão */
+    border-radius: 10px;
+    
+  }
+  
+  .hover_effect:hover {
+    background-color: #eeeeee; /* cor de fundo quando o mouse passa sobre o elemento */
+    cursor: pointer; /* cursor de seta quando o mouse passa sobre o elemento */
+  }
+  .container2 {
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 1rem;
+    background-color: white;
+    border-radius: 10px;
   }
   
   .title {
@@ -27,10 +48,11 @@
     padding: 0;
   }
   
-  .h2 {
+  .h1 {
     font-size: 2rem;
     margin: 0;
     margin-bottom: 1rem;
+    text-align: center;
   }
   
   .p {
@@ -43,7 +65,7 @@
     display: block;
     margin: 0 auto;
     max-width: 100%;
-    height: auto;
+    border-radius: 20px;
   }
   
   .button {
@@ -51,11 +73,11 @@
     margin: 2rem auto;
     padding: 0.5rem 1rem; /* reduzindo o padding */
     font-size: 1.2rem; /* reduzindo o tamanho da fonte */
-    background-color: #0070f3;
-    color: white;
+    background-color: #0071f300;
+    color: rgb(0, 0, 0);
     border-radius: 5px; /* reduzindo o border radius */
     cursor: pointer;
-    border: none;
+    border: solid 1px black;
   }
   .comment {
     margin-top: 20px;

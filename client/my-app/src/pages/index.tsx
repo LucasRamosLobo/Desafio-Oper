@@ -2,6 +2,7 @@ import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import styles from '../styles/Home.module.css';
 import Header from '../components/Header';
+import Image from "next/image";
 
 interface Article {
   id: number;
@@ -38,9 +39,9 @@ const Home = ({ articles }: HomeProps) => {
       <ul  className={styles.ul}>
       <div className={styles.container2}>
         {articles.slice(0, 12).map((article, index) => (
-          <a className={styles.hover_effect} onClick={() => handleReadMoreClick(article.id)}>
+          <a key={index} className={styles.hover_effect} onClick={() => handleReadMoreClick(article.id)}>
           <li  className={styles.li} key={index}>
-            <img  className={styles.img}
+            <Image  className={styles.img}
               src={article.coverImage}
               alt={article.title}
               width={1280}
